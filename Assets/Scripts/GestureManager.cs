@@ -47,9 +47,6 @@ public class GestureManager : MonoBehaviour {
 		// angle in [-179,180]
 		float signed_angle = angle * sign;
 		
-		// angle in [0,360] (not used but included here for completeness)
-		float angle360 =  (signed_angle + 180) % 360;
-		
 		return signed_angle;
 	}
 
