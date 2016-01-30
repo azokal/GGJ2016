@@ -2,7 +2,11 @@
 using System.Collections;
 
 public class SpawnAction : MonoBehaviour {
-	public GameObject[] actions;
+	public GameObject[] actionsFaciles;
+	public GameObject[] actionsMoyennes;
+	public GameObject[] actionsDifficiles;
+	private GameObject[] actionsActuelles;
+
 	public float interval = 1f;
 	private float timer = 0f;
 
@@ -14,26 +18,30 @@ public class SpawnAction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		actionsActuelles = actionsFaciles;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		switch (difficulte) {
+		case enDifficulte.facile:
+			MovingAction.vitesse = 5f;
+			actionsActuelles = actionsFaciles;
+			break;
+		case enDifficulte.moyen:
+			MovingAction.vitesse = 10f;
+			actionsActuelles = actionsMoyennes;
+			break;
+		case enDifficulte.difficile:
+			MovingAction.vitesse = 15f;
+			actionsActuelles = actionsDifficiles;
+			break;
+		}
+
 		if (timer <= 0f) {
-			var o = Instantiate(actions[Random.Range(0,actions.Length)], this.transform.position, Quaternion.identity);
+			var o = Instantiate (actionsActuelles [Random.Range (0, actionsActuelles.Length)], this.transform.position, Quaternion.identity);
 			o.name = "Action";
 			timer = interval;
-
-			switch(difficulte) {
-				case enDifficulte.facile :
-					MovingAction.vitesse = 5f;
-					break;
-				case enDifficulte.moyen:
-					MovingAction.vitesse = 10f;
-					break;
-				case enDifficulte.difficile :
-					MovingAction.vitesse = 15f;
-					break;
-			}
 		}
 
 		timer -= Time.deltaTime;
