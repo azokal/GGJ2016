@@ -120,6 +120,9 @@ public class GestureManager : MonoBehaviour {
 				var ret = doubleGesture();
 				gestureInfo.Clear ();
 				return ret;
+			} else {
+				gestureInfo.Clear ();
+				return "";
 			}
 		}
 
