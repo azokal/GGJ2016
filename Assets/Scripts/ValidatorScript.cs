@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -143,15 +143,15 @@ public class ValidatorScript : MonoBehaviour {
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
 		if (serie < 15){
 			combo = 1;
-			spawnAction.difficulte = SpawnAction.enDifficulte.facile;
+			spawnAction.difficulte = SpawnAction.enumDifficulte.facile;
 		}
 		if (serie >= 15 && combo < 40){
 			combo = 2;
-			spawnAction.difficulte = SpawnAction.enDifficulte.moyen;
+			spawnAction.difficulte = SpawnAction.enumDifficulte.moyen;
 		}
 		if (serie >= 40){
 			combo = 4;
-			spawnAction.difficulte = SpawnAction.enDifficulte.difficile;
+			spawnAction.difficulte = SpawnAction.enumDifficulte.difficile;
 		}
 	}
 
