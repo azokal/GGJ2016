@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MovingAction : MonoBehaviour {
-	public float vitesse = 100f;
+	public static float vitesse = 5f;
 
 	// Use this for initialization
 	void Start () {
