@@ -117,6 +117,7 @@ public class ValidatorScript : MonoBehaviour {
 					ci = GameObject.Find("GestureManager").GetComponent<GestureManager>().getGesture();
 				else
 					ci = CheckInput();
+				// You pushed a button
 				if (ci != "") {
 					if (ci == hit.gameObject.GetComponent<ActionType>().eventType) {
 						serie += 1;
@@ -124,21 +125,29 @@ public class ValidatorScript : MonoBehaviour {
 						score += 1 * combo;
 						Destroy(hit.gameObject);
 						tmpGood = 0f;
-						functionDebug();
+						//functionDebug();
 						goodParticle.Play();
 					}else{
 						serie = 0;
 						Combo();
 						tmpBad = 0f;
-						functionDebug();
+						//functionDebug();
+						Destroy(hit.gameObject);
 						badParticle.Play();
 					}
+				}else{
+				// You didn't push
+
 				}
+
 			}
 		}
 	}
 
-
+	void OnTriggerEnter(Collider button) {
+		Destroy(button.gameObject);
+	}
+	
 	void Combo(){
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
 		if (serie < 15){
