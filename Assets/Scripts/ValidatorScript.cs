@@ -14,6 +14,7 @@ public class ValidatorScript : MonoBehaviour {
 	private int score = 0;
 
 	string SimpleUpCheck() {
+
 		if (Input.GetKey(KeyCode.UpArrow))
 			return "SimpleUp";
 		return "";
@@ -102,7 +103,11 @@ public class ValidatorScript : MonoBehaviour {
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
 		foreach (var hit in hits) {
 			if (hit.name == "Action") {
-				var ci = CheckInput();
+				string ci = "";
+				if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+					ci = GameObject.Find("GestureManager").GetComponent<GestureManager>().getGesture();
+				else
+					ci = CheckInput();
 				if (ci != "") {
 					if (ci == hit.gameObject.GetComponent<ActionType>().eventType) {
 						serie += 1;
