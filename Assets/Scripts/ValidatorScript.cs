@@ -104,19 +104,11 @@ public class ValidatorScript : MonoBehaviour {
 		return id;
 	}
 
-	// Update is called once per frame
-	void Update () {
+	void ActionPlayed(string ci) {
 		Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
-		animGoodBar ();
-		animBadBar ();
 		foreach (var hit in hits) {
 			if (hit.name == "Action") {
-				string ci = "";
-				if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-					ci = GameObject.Find("GestureManager").GetComponent<GestureManager>().getGesture();
-				else
-					ci = CheckInput();
 				if (ci != "") {
 					if (ci == hit.gameObject.GetComponent<ActionType>().eventType) {
 						serie += 1;
@@ -124,20 +116,64 @@ public class ValidatorScript : MonoBehaviour {
 						score += 1 * combo;
 						Destroy(hit.gameObject);
 						tmpGood = 0f;
-						functionDebug();
+						//functionDebug();
 						goodParticle.Play();
 					}else{
 						serie = 0;
 						Combo();
 						tmpBad = 0f;
-						functionDebug();
+						//functionDebug();
+						Destroy(hit.gameObject);
 						badParticle.Play();
 					}
+				}else{
+				// You didn't push
+
 				}
+
 			}
 		}
 	}
 
+	void OnTriggerEnter(Collider button) {
+		Destroy(button.gameObject);
+	}
+
+	// Update is called once per frame
+	void Update () {
+		animGoodBar ();
+		animBadBar ();
+		if (!(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)) {
+			Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
+			var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
+			foreach (var hit in hits) {
+				if (hit.name == "Action") {
+					string ci = "";
+					ci = CheckInput();
+					if (ci != "") {
+						if (ci == hit.gameObject.GetComponent<ActionType>().eventType) {
+							serie += 1;
+							Combo();
+							score += 1 * combo;
+							Destroy(hit.gameObject);
+							tmpGood = 0f;
+							//functionDebug();
+							goodParticle.Play();
+
+						}else{
+							serie = 0;
+							Combo();
+							tmpBad = 0f;
+							//functionDebug();
+							Destroy(hit.gameObject);
+							badParticle.Play();
+						}
+					}
+				}
+			}
+		}
+
+	}
 
 	void Combo(){
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
