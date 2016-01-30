@@ -108,8 +108,6 @@ public class ValidatorScript : MonoBehaviour {
 	                  ci) {
 		Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
-		animGoodBar ();
-		animBadBar ();
 		foreach (var hit in hits) {
 			if (hit.name == "Action") {
 				if (ci != "") {
@@ -135,6 +133,8 @@ public class ValidatorScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		animGoodBar ();
+		animBadBar ();
 		if (!(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)) {
 			Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 			var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
