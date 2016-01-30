@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpawnAction : MonoBehaviour {
-	public GameObject action;
+	public GameObject[] actions;
 	public float interval = 1f;
 	private float timer = 0f;
 
@@ -13,7 +13,8 @@ public class SpawnAction : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (timer <= 0f) {
-			Instantiate(action, this.transform.position, Quaternion.identity);
+			var o = Instantiate(actions[Random.Range(0,actions.Length)], this.transform.position, Quaternion.identity);
+			o.name = "Action";
 			timer = interval;
 		}
 
