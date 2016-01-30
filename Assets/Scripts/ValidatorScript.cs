@@ -5,13 +5,18 @@ using System.Collections.Generic;
 public class ValidatorScript : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-		
-	}
 
 	private int combo = 1;
 	private int serie = 0;
 	private int score = 0;
+	public float animationTime = 0.5f;
+	private float tmpGood;
+	private float tmpBad;
+
+	void Start () {
+		tmpGood = animationTime;
+		tmpBad = animationTime;
+	}
 
 	string SimpleUpCheck() {
 
@@ -101,6 +106,8 @@ public class ValidatorScript : MonoBehaviour {
 	void Update () {
 		Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
+		animGoodBar ();
+		animBadBar ();
 		foreach (var hit in hits) {
 			if (hit.name == "Action") {
 				string ci = "";
@@ -114,10 +121,12 @@ public class ValidatorScript : MonoBehaviour {
 						Combo();
 						score += 1 * combo;
 						Destroy(hit.gameObject);
+						tmpGood = 0f;
 						functionDebug();
 					}else{
 						serie = 0;
 						Combo();
+						tmpBad = 0f;
 						functionDebug();
 					}
 				}
@@ -149,4 +158,28 @@ public class ValidatorScript : MonoBehaviour {
 		Debug.Log ("Difficulté : "+ GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ().difficulte);
 	}
 		
+	void animGoodBar(){
+		if (tmpGood < animationTime){
+			if (tmpGood < animationTime/2)
+				GameObject.Find("Barre_Good").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, tmpGood/(animationTime/2));
+			else
+				GameObject.Find("Barre_Good").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, (animationTime - tmpGood) / (animationTime/2));
+
+			tmpGood += Time.deltaTime;
+		}
+
 	}
+
+	void animBadBar(){
+		if (tmpBad < animationTime){
+			if (tmpBad < animationTime/2)
+				GameObject.Find("Barre_Bad").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, tmpBad/(animationTime/2));
+			else
+				GameObject.Find("Barre_Bad").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, (animationTime - tmpBad) / (animationTime/2));
+			
+			tmpBad += Time.deltaTime;
+		}
+		
+	}
+
+}
