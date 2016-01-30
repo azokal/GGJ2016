@@ -12,6 +12,8 @@ public class ValidatorScript : MonoBehaviour {
 	public float animationTime = 0.5f;
 	private float tmpGood;
 	private float tmpBad;
+	public ParticleSystem goodParticle;
+	public ParticleSystem badParticle;
 
 	void Start () {
 		tmpGood = animationTime;
@@ -123,11 +125,13 @@ public class ValidatorScript : MonoBehaviour {
 						Destroy(hit.gameObject);
 						tmpGood = 0f;
 						functionDebug();
+						goodParticle.Play();
 					}else{
 						serie = 0;
 						Combo();
 						tmpBad = 0f;
 						functionDebug();
+						badParticle.Play();
 					}
 				}
 			}
