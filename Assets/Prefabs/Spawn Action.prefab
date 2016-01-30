@@ -39,18 +39,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3c790f6ba991340ae36182b0cef135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 170740, guid: 386579642ccb86842a34b00806293086, type: 2}
-  - {fileID: 170740, guid: f866c509e7d6b67489f6b846789bfc93, type: 2}
-  - {fileID: 170740, guid: 2cbb304fadded7c419f0f42ad3fb44a9, type: 2}
-  - {fileID: 170740, guid: 7518f4b7dee0e0244a568c7ae95064d9, type: 2}
+  actionsFaciles:
   - {fileID: 170740, guid: 8fe0ee007ed1a0043af66dd1c79a772b, type: 2}
   - {fileID: 170740, guid: 74f615c762596f1468d81aa905119825, type: 2}
   - {fileID: 170740, guid: a5d6735ff73f84344a4e04f8441b3b23, type: 2}
   - {fileID: 170740, guid: a8a158792167d3e478a835c30c752c31, type: 2}
-  - {fileID: 170740, guid: 6b82f2ce6f5f53f45b2416f7ab167a51, type: 2}
-  - {fileID: 170740, guid: b54cf35880037974f837155824f8fa90, type: 2}
-  interval: 1
+  actionsMoyennes:
+  - {fileID: 170740, guid: 8fe0ee007ed1a0043af66dd1c79a772b, type: 2}
+  - {fileID: 170740, guid: 74f615c762596f1468d81aa905119825, type: 2}
+  - {fileID: 170740, guid: a5d6735ff73f84344a4e04f8441b3b23, type: 2}
+  - {fileID: 170740, guid: a8a158792167d3e478a835c30c752c31, type: 2}
+  actionsDifficiles:
+  - {fileID: 170740, guid: 74f615c762596f1468d81aa905119825, type: 2}
+  - {fileID: 170740, guid: 8fe0ee007ed1a0043af66dd1c79a772b, type: 2}
+  - {fileID: 170740, guid: a5d6735ff73f84344a4e04f8441b3b23, type: 2}
+  - {fileID: 170740, guid: a8a158792167d3e478a835c30c752c31, type: 2}
+  difficulte: 0
+  vitesseFacile: 5
+  vitesseMoyen: 10
+  vitesseDifficile: 15
+  intervalFacile: 1
+  intervalMoyen: .5
+  intervalDifficile: .300000012
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
