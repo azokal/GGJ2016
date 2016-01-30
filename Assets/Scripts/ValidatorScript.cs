@@ -104,8 +104,7 @@ public class ValidatorScript : MonoBehaviour {
 		return id;
 	}
 
-	void ActionPlayed(string 
-	                  ci) {
+	void ActionPlayed(string ci) {
 		Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
 		foreach (var hit in hits) {
@@ -117,18 +116,27 @@ public class ValidatorScript : MonoBehaviour {
 						score += 1 * combo;
 						Destroy(hit.gameObject);
 						tmpGood = 0f;
-						functionDebug();
+						//functionDebug();
 						goodParticle.Play();
 					}else{
 						serie = 0;
 						Combo();
 						tmpBad = 0f;
-						functionDebug();
+						//functionDebug();
+						Destroy(hit.gameObject);
 						badParticle.Play();
 					}
+				}else{
+				// You didn't push
+
 				}
+
 			}
 		}
+	}
+
+	void OnTriggerEnter(Collider button) {
+		Destroy(button.gameObject);
 	}
 
 	// Update is called once per frame
@@ -148,11 +156,17 @@ public class ValidatorScript : MonoBehaviour {
 							Combo();
 							score += 1 * combo;
 							Destroy(hit.gameObject);
-							functionDebug();
+							tmpGood = 0f;
+							//functionDebug();
+							goodParticle.Play();
+
 						}else{
 							serie = 0;
 							Combo();
-							functionDebug();
+							tmpBad = 0f;
+							//functionDebug();
+							Destroy(hit.gameObject);
+							badParticle.Play();
 						}
 					}
 				}
@@ -160,7 +174,6 @@ public class ValidatorScript : MonoBehaviour {
 		}
 
 	}
-
 
 	void Combo(){
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
