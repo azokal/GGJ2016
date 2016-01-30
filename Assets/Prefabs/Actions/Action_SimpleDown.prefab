@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21231438}
   - 114: {fileID: 11466650}
   - 61: {fileID: 6165680}
+  - 114: {fileID: 11493354}
   m_Layer: 0
   m_Name: Action_SimpleDown
   m_TagString: Untagged
@@ -55,6 +56,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 5
+--- !u!114 &11493354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2c861171f0f5447851fd254fce9f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventType: SimpleDown
 --- !u!212 &21231438
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -104,6 +117,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Size.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: eventType
+      value: SimpleDown
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
