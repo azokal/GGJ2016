@@ -9,17 +9,26 @@ public class SpawnAction : MonoBehaviour {
 
 	private float timer = 0f;
 
-	public enum enDifficulte{facile,moyen,difficile};
-	public enDifficulte difficulte = enDifficulte.facile;
+	public enum enumDifficulte{facile,moyen,difficile};
+	public enumDifficulte difficulte = enumDifficulte.facile;
+	private enumDifficulte difficulteFramePrecedente = enumDifficulte.facile;
 
 	public float vitesseFacile = 5f;
-	public float vitesseMoyen = 10f;
-	public float vitesseDifficile= 15f;
+	public float vitesseMoyenne = 10f;
+	public float vitesseDifficile = 15f;
+	public float tempsTransitionDifficulte = 2f;
+	private float tempsLerp = 0f;
+	private bool enTransitionVitesse = false;
+	private float vitesseDepart;
 
 	public float intervalFacile = 1f;
 	public float intervalMoyen = 0.5f;
 	public float intervalDifficile = 0.3f;
 	private float intervalActuel;
+
+	public float tempoEnSecondes = 0.5f;
+	public int espacementActionMin = 1;
+	public int espacementActionMax = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -29,30 +38,47 @@ public class SpawnAction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		switch (difficulte) {
-		case enDifficulte.facile:
-			MovingAction.vitesse = vitesseFacile;
-			actionsActuelles = actionsFaciles;
-			intervalActuel = intervalFacile;
-			break;
-		case enDifficulte.moyen:
-			MovingAction.vitesse = vitesseMoyen;
-			actionsActuelles = actionsMoyennes;
-			intervalActuel = intervalMoyen;
-			break;
-		case enDifficulte.difficile:
-			MovingAction.vitesse = vitesseDifficile;
-			actionsActuelles = actionsDifficiles;
-			intervalActuel = intervalDifficile;
-			break;
+		if (difficulte != difficulteFramePrecedente) {
+			enTransitionVitesse = true;
+			vitesseDepart = MovingAction.vitesse;
+		}
+
+		if (enTransitionVitesse) {
+			tempsLerp += (1 / tempsTransitionDifficulte) * Time.deltaTime;
+
+			switch (difficulte) {
+			case enumDifficulte.facile:
+				MovingAction.vitesse = Mathf.Lerp (vitesseDepart, vitesseFacile, tempsLerp);
+				actionsActuelles = actionsFaciles;
+				intervalActuel = intervalFacile;
+				break;
+			case enumDifficulte.moyen:
+				MovingAction.vitesse = Mathf.Lerp (vitesseDepart, vitesseMoyenne, tempsLerp);
+				actionsActuelles = actionsMoyennes;
+				intervalActuel = intervalMoyen;
+				break;
+			case enumDifficulte.difficile:
+				MovingAction.vitesse = Mathf.Lerp (vitesseDepart, vitesseDifficile, tempsLerp);
+				actionsActuelles = actionsDifficiles;
+				intervalActuel = intervalDifficile;
+				break;
+			}
+
+			if (tempsLerp >= 1f) {
+				enTransitionVitesse = false;
+			}
+		} else {
+			tempsLerp = 0f;
 		}
 
 		if (timer <= 0f) {
 			var o = Instantiate (actionsActuelles [Random.Range (0, actionsActuelles.Length)], this.transform.position, Quaternion.identity);
 			o.name = "Action";
-			timer = intervalActuel;
+			timer = intervalActuel * tempoEnSecondes * Random.Range(espacementActionMin,espacementActionMax);
 		}
 
 		timer -= Time.deltaTime;
+
+		difficulteFramePrecedente = difficulte;
 	}
 }
