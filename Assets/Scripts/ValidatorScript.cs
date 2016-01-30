@@ -1,17 +1,24 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class ValidatorScript : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-		
-	}
 
 	private int combo = 1;
 	private int serie = 0;
 	private int score = 0;
+	public float animationTime = 0.5f;
+	private float tmpGood;
+	private float tmpBad;
+	public ParticleSystem goodParticle;
+	public ParticleSystem badParticle;
+
+	void Start () {
+		tmpGood = animationTime;
+		tmpBad = animationTime;
+	}
 
 	string SimpleUpCheck() {
 
@@ -101,6 +108,8 @@ public class ValidatorScript : MonoBehaviour {
 	                  ci) {
 		Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
+		animGoodBar ();
+		animBadBar ();
 		foreach (var hit in hits) {
 			if (hit.name == "Action") {
 				if (ci != "") {
@@ -109,11 +118,15 @@ public class ValidatorScript : MonoBehaviour {
 						Combo();
 						score += 1 * combo;
 						Destroy(hit.gameObject);
+						tmpGood = 0f;
 						functionDebug();
+						goodParticle.Play();
 					}else{
 						serie = 0;
 						Combo();
+						tmpBad = 0f;
 						functionDebug();
+						badParticle.Play();
 					}
 				}
 			}
@@ -151,17 +164,17 @@ public class ValidatorScript : MonoBehaviour {
 
 	void Combo(){
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
-		if (serie < 10){
+		if (serie < 15){
 			combo = 1;
-			spawnAction.difficulte = SpawnAction.enDifficulte.facile;
+			spawnAction.difficulte = SpawnAction.enumDifficulte.facile;
 		}
-		if (serie >= 10 && combo < 20){
+		if (serie >= 15 && combo < 40){
 			combo = 2;
-			spawnAction.difficulte = SpawnAction.enDifficulte.moyen;
+			spawnAction.difficulte = SpawnAction.enumDifficulte.moyen;
 		}
-		if (serie >= 20){
+		if (serie >= 40){
 			combo = 4;
-			spawnAction.difficulte = SpawnAction.enDifficulte.difficile;
+			spawnAction.difficulte = SpawnAction.enumDifficulte.difficile;
 		}
 	}
 
@@ -172,4 +185,28 @@ public class ValidatorScript : MonoBehaviour {
 		Debug.Log ("Difficulté : "+ GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ().difficulte);
 	}
 		
+	void animGoodBar(){
+		if (tmpGood < animationTime){
+			if (tmpGood < animationTime/2)
+				GameObject.Find("Barre_Good").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, tmpGood/(animationTime/2));
+			else
+				GameObject.Find("Barre_Good").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, (animationTime - tmpGood) / (animationTime/2));
+
+			tmpGood += Time.deltaTime;
+		}
+
 	}
+
+	void animBadBar(){
+		if (tmpBad < animationTime){
+			if (tmpBad < animationTime/2)
+				GameObject.Find("Barre_Bad").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, tmpBad/(animationTime/2));
+			else
+				GameObject.Find("Barre_Bad").GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, (animationTime - tmpBad) / (animationTime/2));
+			
+			tmpBad += Time.deltaTime;
+		}
+		
+	}
+
+}
