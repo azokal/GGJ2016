@@ -6,12 +6,12 @@ public class ValidatorScript : MonoBehaviour {
 
 	// Use this for initialization
 
-	private int combo = 1;
-	private int serie = 0;
-	private int score = 0;
+	public int combo = 1;
+	public int serie = 0;
+	public int score = 0;
 	public float animationTime = 0.5f;
-	private float tmpGood;
-	private float tmpBad;
+	public float tmpGood;
+	public float tmpBad;
 	public ParticleSystem goodParticle;
 	public ParticleSystem badParticle;
 
@@ -21,27 +21,34 @@ public class ValidatorScript : MonoBehaviour {
 	}
 
 	string SimpleUpCheck() {
-
-		if (Input.GetKey(KeyCode.UpArrow))
+		if (Input.GetKey (KeyCode.UpArrow)) {
+			GameObject.Find("Chara").GetComponent<Animator>().Play("Up");
 			return "SimpleUp";
+		}
 		return "";
 	}
 
 	string SimpleDownCheck() {
-		if (Input.GetKey(KeyCode.DownArrow))
+		if (Input.GetKey (KeyCode.DownArrow)) {
+			GameObject.Find ("Chara").GetComponent<Animator> ().Play ("Down");
 			return "SimpleDown";
+		}
 		return "";
 	}
 
 	string SimpleLeftCheck() {
-		if (Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			GameObject.Find ("Chara").GetComponent<Animator> ().Play ("Left");
 			return "SimpleLeft";
+		}
 		return "";
 	}
 	
 	string SimpleRightCheck() {
-		if (Input.GetKey(KeyCode.RightArrow))
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			GameObject.Find ("Chara").GetComponent<Animator> ().Play ("Right");
 			return "SimpleRight";
+		}
 		return "";
 	}
 
@@ -135,8 +142,15 @@ public class ValidatorScript : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider button) {
-		Destroy(button.gameObject);
+	void OnTriggerEnter(Collider collider) {
+		if (collider.tag == "button"){
+			serie = 0;
+			Combo ();
+			tmpBad = 0f;
+			Destroy(collider.gameObject);
+			//functionDebug();
+			badParticle.Play ();
+		}
 	}
 
 	// Update is called once per frame
@@ -175,7 +189,7 @@ public class ValidatorScript : MonoBehaviour {
 
 	}
 
-	void Combo(){
+	public void Combo(){
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
 		if (serie < 15){
 			combo = 1;
