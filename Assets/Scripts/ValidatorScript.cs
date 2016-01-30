@@ -123,15 +123,15 @@ public class ValidatorScript : MonoBehaviour {
 
 	void Combo(){
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
-		if (serie < 10){
+		if (serie < 15){
 			combo = 1;
 			spawnAction.difficulte = SpawnAction.enDifficulte.facile;
 		}
-		if (serie >= 10 && combo < 20){
+		if (serie >= 15 && combo < 40){
 			combo = 2;
 			spawnAction.difficulte = SpawnAction.enDifficulte.moyen;
 		}
-		if (serie >= 20){
+		if (serie >= 40){
 			combo = 4;
 			spawnAction.difficulte = SpawnAction.enDifficulte.difficile;
 		}
