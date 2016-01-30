@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/debug_flo.unity
+  - enabled: 1
     path: Assets/Scenes/menu.unity
   - enabled: 1
     path: Assets/Scenes/game.unity
