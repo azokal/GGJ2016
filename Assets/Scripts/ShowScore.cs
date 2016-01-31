@@ -11,6 +11,7 @@ public class ShowScore : MonoBehaviour {
 	void Start () {
 
 		scoreText = GetComponent<UnityEngine.UI.Text>();
+	//	fond.transform.position = 
 	//	scoreText.transform.position = 
 	
 	}
@@ -18,6 +19,6 @@ public class ShowScore : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		scoreText.text =("Score : "+ validator.GetComponent<ValidatorScript>().score +"\nCombo : "+ validator.GetComponent<ValidatorScript>().serie + "\nMultiplicateur : x"+ validator.GetComponent<ValidatorScript>().combo);
+		scoreText.text =("Score : "+ validator.GetComponent<ValidatorScript>().score +"\nCombo : "+ validator.GetComponent<ValidatorScript>().serie);
 	}
 }

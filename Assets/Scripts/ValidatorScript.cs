@@ -225,11 +225,13 @@ public class ValidatorScript : MonoBehaviour {
 		if (serie >= 15 && combo < 40){
 			if(combo==1){
 				//minions1to2();
+				combo = 2;
+				spawnAction.difficulte = SpawnAction.enumDifficulte.moyen;
 			}else if(combo==3){
 				//minions3to2();
+				combo = 2;
+				spawnAction.difficulte = SpawnAction.enumDifficulte.moyen;
 			}
-			combo = 2;
-			spawnAction.difficulte = SpawnAction.enumDifficulte.moyen;
 		}
 		if (serie >= 40){
 			if(combo==2){

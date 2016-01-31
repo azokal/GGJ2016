@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: polySurface2_pCube3
+    100004: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
     400000: //RootNode
     400002: polySurface2_pCube3
+    400004: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
     2300000: polySurface2_pCube3
+    2300002: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
     3300000: polySurface2_pCube3
+    3300002: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
     4300000: polySurface2_pCube3
+    4300002: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
   materials:
     importMaterials: 1
     materialName: 0
