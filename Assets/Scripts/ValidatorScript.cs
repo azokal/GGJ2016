@@ -130,6 +130,23 @@ public class ValidatorScript : MonoBehaviour {
 	}
 
 	void ActionPlayed(string ci) {
+		if (ci == "SimpleUp")
+			animToLaunch = "Up";
+		if (ci == "SimpleDown")
+			animToLaunch = "Down";
+		if (ci == "SimpleLeft")
+			animToLaunch = "Left";
+		if (ci == "SimpleRight")
+			animToLaunch = "Right";
+		if (ci == "DoubleUp")
+			animToLaunch = "doubleTop";
+		if (ci == "DoubleDown")
+			animToLaunch = "doubleDown";
+		if (ci == "InvertUp")
+			animToLaunch = "downUp";
+		if (ci == "InvertDown")
+			animToLaunch = "upDown";
+
 		Vector2 pos = new Vector2 (this.transform.position.x, this.transform.position.y);
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
 		foreach (var hit in hits) {
