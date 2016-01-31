@@ -14,6 +14,10 @@ public class ValidatorScript : MonoBehaviour {
 	public float tmpBad;
 	public ParticleSystem goodParticle;
 	public ParticleSystem badParticle;
+	public string animToLaunch;
+
+	public AudioClip[] soundArray = new AudioClip[25];
+	public AudioClip[] failArray = new AudioClip[2];
 
 	void Start () {
 		tmpGood = animationTime;
@@ -22,7 +26,7 @@ public class ValidatorScript : MonoBehaviour {
 
 	string SimpleUpCheck() {
 		if (Input.GetKey (KeyCode.UpArrow)) {
-			GameObject.Find("Chara").GetComponent<Animator>().Play("Up");
+			animToLaunch = "Up";
 			return "SimpleUp";
 		}
 		return "";
@@ -30,7 +34,7 @@ public class ValidatorScript : MonoBehaviour {
 
 	string SimpleDownCheck() {
 		if (Input.GetKey (KeyCode.DownArrow)) {
-			GameObject.Find ("Chara").GetComponent<Animator> ().Play ("Down");
+			animToLaunch = "Down";
 			return "SimpleDown";
 		}
 		return "";
@@ -38,7 +42,7 @@ public class ValidatorScript : MonoBehaviour {
 
 	string SimpleLeftCheck() {
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			GameObject.Find ("Chara").GetComponent<Animator> ().Play ("Left");
+			animToLaunch = "Left";
 			return "SimpleLeft";
 		}
 		return "";
@@ -46,7 +50,7 @@ public class ValidatorScript : MonoBehaviour {
 	
 	string SimpleRightCheck() {
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			GameObject.Find ("Chara").GetComponent<Animator> ().Play ("Right");
+			animToLaunch = "Right";
 			return "SimpleRight";
 		}
 		return "";
@@ -125,6 +129,14 @@ public class ValidatorScript : MonoBehaviour {
 						tmpGood = 0f;
 						//functionDebug();
 						goodParticle.Play();
+						if(!GameObject.Find ("Charas").GetComponent<AudioSource>().isPlaying){
+							GameObject.Find ("Charas").GetComponent<AudioSource>().clip = soundArray[Random.Range (0, 25)];
+							GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
+							GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
+							foreach(GameObject chara in charaMultiples){
+								chara.GetComponent<Animator>().Play(animToLaunch);
+							}
+						}
 					}else{
 						serie = 0;
 						Combo();
@@ -132,12 +144,12 @@ public class ValidatorScript : MonoBehaviour {
 						//functionDebug();
 						Destroy(hit.gameObject);
 						badParticle.Play();
+						if(!GameObject.Find ("Charas").GetComponent<AudioSource>().isPlaying){
+							GameObject.Find ("Charas").GetComponent<AudioSource>().clip = failArray[Random.Range (0, 2)];
+							GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
+						}
 					}
-				}else{
-				// You didn't push
-
 				}
-
 			}
 		}
 	}
@@ -173,7 +185,14 @@ public class ValidatorScript : MonoBehaviour {
 							tmpGood = 0f;
 							//functionDebug();
 							goodParticle.Play();
-
+							if(!GameObject.Find ("Charas").GetComponent<AudioSource>().isPlaying){
+								GameObject.Find ("Charas").GetComponent<AudioSource>().clip = soundArray[Random.Range (0, 25)];
+								GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
+								GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
+								foreach(GameObject chara in charaMultiples){
+									chara.GetComponent<Animator>().Play(animToLaunch);
+								}
+							}
 						}else{
 							serie = 0;
 							Combo();
@@ -181,6 +200,10 @@ public class ValidatorScript : MonoBehaviour {
 							//functionDebug();
 							Destroy(hit.gameObject);
 							badParticle.Play();
+							if(!GameObject.Find ("Charas").GetComponent<AudioSource>().isPlaying){
+								GameObject.Find ("Charas").GetComponent<AudioSource>().clip = failArray[Random.Range (0, 2)];
+								GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
+							}
 						}
 					}
 				}
