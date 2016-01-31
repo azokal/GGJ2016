@@ -6,6 +6,7 @@ public class SpawnAction : MonoBehaviour {
 	public GameObject[] actionsMoyennes;
 	public GameObject[] actionsDifficiles;
 	private GameObject[] actionsActuelles;
+	public GameObject scoreBoard;
 
 	private float timer = 0f;
 
@@ -80,7 +81,7 @@ public class SpawnAction : MonoBehaviour {
 		}
 
 		if (DureeDeLaPartie <= 0) {
-			Application.LoadLevel("Menu");
+			scoreBoard.SetActive(true);
 		}
 
 		timer -= Time.deltaTime;
