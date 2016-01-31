@@ -1,22 +1,17 @@
 fileFormatVersion: 2
-guid: e491e86aa55d0c7439fb66a298d9811a
-timeCreated: 1454227349
+guid: 82e1cfc0268b43c4995f19906b37de5d
+timeCreated: 1454233742
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: polySurface2_pCube3
-    100004: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
-    400000: //RootNode
-    400002: polySurface2_pCube3
-    400004: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
-    2300000: polySurface2_pCube3
-    2300002: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
-    3300000: polySurface2_pCube3
-    3300002: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
-    4300000: polySurface2_pCube3
-    4300002: cristal_pCube3_cristal_polySurface2_cristal_polySurface3_cristal_polySurface1
+    100000: pCube1
+    100002: //RootNode
+    400000: pCube1
+    400002: //RootNode
+    2300000: pCube1
+    3300000: pCube1
+    4300000: pCube1
   materials:
     importMaterials: 1
     materialName: 0
@@ -40,7 +35,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .0700000003
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
