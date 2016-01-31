@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.3700008, y: -4, z: 0}
+  m_LocalPosition: {x: 19, y: -3.81999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,11 +56,15 @@ MonoBehaviour:
   - {fileID: 170740, guid: a8a158792167d3e478a835c30c752c31, type: 2}
   difficulte: 0
   vitesseFacile: 5
-  vitesseMoyen: 10
+  vitesseMoyenne: 10
   vitesseDifficile: 15
+  tempsTransitionDifficulte: 2
   intervalFacile: 1
   intervalMoyen: .5
-  intervalDifficile: .300000012
+  intervalDifficile: .25
+  tempoEnSecondes: .5
+  espacementActionMin: 1
+  espacementActionMax: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
