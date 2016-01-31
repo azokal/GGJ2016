@@ -6,8 +6,11 @@ public class SpawnAction : MonoBehaviour {
 	public GameObject[] actionsMoyennes;
 	public GameObject[] actionsDifficiles;
 	private GameObject[] actionsActuelles;
+	public GameObject scoreBoard;
 
 	private float timer = 0f;
+
+	public float DureeDeLaPartie = 60f;
 
 	public enum enumDifficulte{facile,moyen,difficile};
 	public enumDifficulte difficulte = enumDifficulte.facile;
@@ -71,13 +74,18 @@ public class SpawnAction : MonoBehaviour {
 			tempsLerp = 0f;
 		}
 
-		if (timer <= 0f) {
+		if (timer <= 0f && DureeDeLaPartie > 5f) {
 			var o = Instantiate (actionsActuelles [Random.Range (0, actionsActuelles.Length)], this.transform.position, Quaternion.identity);
 			o.name = "Action";
 			timer = intervalActuel * tempoEnSecondes * Random.Range(espacementActionMin,espacementActionMax);
 		}
 
+		if (DureeDeLaPartie <= 0) {
+			scoreBoard.SetActive(true);
+		}
+
 		timer -= Time.deltaTime;
+		DureeDeLaPartie -= Time.deltaTime;
 
 		difficulteFramePrecedente = difficulte;
 	}

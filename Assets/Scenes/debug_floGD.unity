@@ -132,6 +132,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.328042656
       objectReference: {fileID: 0}
+    - target: {fileID: 3360952, guid: e6f4627eb16914e4bae73e872fab6fe7, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300002, guid: e491e86aa55d0c7439fb66a298d9811a, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6f4627eb16914e4bae73e872fab6fe7, type: 2}
   m_IsPrefabParent: 0
@@ -623,7 +627,7 @@ ParticleSystem:
     boxZ: 1
     arc: 360
     placementMode: 2
-    m_Mesh: {fileID: 4300002, guid: 30327c5137da1934597be9a38b56c70a, type: 3}
+    m_Mesh: {fileID: 4300002, guid: e491e86aa55d0c7439fb66a298d9811a, type: 3}
     randomDirection: 1
   EmissionModule:
     enabled: 1

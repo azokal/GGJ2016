@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class YouFail : MonoBehaviour {
+public class YouStart : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
@@ -14,16 +14,11 @@ public class YouFail : MonoBehaviour {
 		var hits = Physics2D.OverlapCircleAll(pos, 0.1f);
 		foreach (var hit in hits) {
 			if (hit.name == "Action") {
-				var v = GameObject.Find("Validator").GetComponent<ValidatorScript>();
-				v.serie = 0;
-				v.Combo ();
-				v.tmpBad = 0f;
-				hit.GetComponent<BoxCollider2D>().enabled = false;
+				
 				var ma = hit.gameObject.GetComponent<MovingAction>();
-				hit.gameObject.GetComponent<MovingAction>().fadeIn = false;
+				hit.gameObject.GetComponent<MovingAction>().fadeIn = true;
 				hit.gameObject.GetComponent<MovingAction>().currentTimeToFade = hit.gameObject.GetComponent<MovingAction>().fadingTime;
-				//functionDebug();
-				v.badParticle.Play ();
+				
 			}
 		}
 	}
