@@ -67,6 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0648ab7996d6b429df122d0873a400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingTime: .5
+  currentTimeToFade: 0
+  fadeIn: 1
 --- !u!212 &21231438
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -92,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: c88f481c949c99149b9f1c96311b3a1c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -128,6 +131,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: button
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
