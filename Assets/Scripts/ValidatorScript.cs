@@ -126,22 +126,32 @@ public class ValidatorScript : MonoBehaviour {
 						serie += 1;
 						Combo();
 						score += 1 * combo;
-						Destroy(hit.gameObject);
+
+						var ma = hit.gameObject.GetComponent<MovingAction>();
+						hit.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+						hit.gameObject.GetComponent<MovingAction>().fadeIn = false;
+						hit.gameObject.GetComponent<MovingAction>().currentTimeToFade = hit.gameObject.GetComponent<MovingAction>().fadingTime;
+						//Destroy(hit.gameObject);
 						tmpGood = 0f;
 						goodParticle.Play();
+						GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
+						foreach(GameObject chara in charaMultiples){
+							chara.GetComponent<Animator>().Play(animToLaunch);
+						}
 						if(!GameObject.Find ("Charas").GetComponent<AudioSource>().isPlaying){
 							GameObject.Find ("Charas").GetComponent<AudioSource>().clip = soundArray[Random.Range (0, 25)];
 							GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
-							GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
-							foreach(GameObject chara in charaMultiples){
-								chara.GetComponent<Animator>().Play(animToLaunch);
-							}
 						}
 					}else{
 						serie = 0;
 						Combo();
 						tmpBad = 0f;
-						Destroy(hit.gameObject);
+
+						var ma = hit.gameObject.GetComponent<MovingAction>();
+						hit.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+						hit.gameObject.GetComponent<MovingAction>().fadeIn = false;
+						hit.gameObject.GetComponent<MovingAction>().currentTimeToFade = hit.gameObject.GetComponent<MovingAction>().fadingTime;
+						//Destroy(hit.gameObject);
 						badParticle.Play();
 						GameObject.Find ("Charas").GetComponent<AudioSource>().clip = failArray[Random.Range (0, 2)];
 						GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
@@ -160,7 +170,11 @@ public class ValidatorScript : MonoBehaviour {
 			serie = 0;
 			Combo ();
 			tmpBad = 0f;
-			Destroy(collider.gameObject);
+			var ma = collider.gameObject.GetComponent<MovingAction>();
+			collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+			collider.gameObject.GetComponent<MovingAction>().fadeIn = false;
+			collider.gameObject.GetComponent<MovingAction>().currentTimeToFade = collider.gameObject.GetComponent<MovingAction>().fadingTime;
+			//Destroy(collider.gameObject);
 			badParticle.Play ();
 		}
 	}
@@ -181,24 +195,40 @@ public class ValidatorScript : MonoBehaviour {
 							serie += 1;
 							Combo();
 							score += 1 * combo;
-							Destroy(hit.gameObject);
+
+							var ma = hit.gameObject.GetComponent<MovingAction>();
+							hit.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+							hit.gameObject.GetComponent<MovingAction>().fadeIn = false;
+							hit.gameObject.GetComponent<MovingAction>().currentTimeToFade = hit.gameObject.GetComponent<MovingAction>().fadingTime;
+
 							tmpGood = 0f;
 							//functionDebug();
 							goodParticle.Play();
+
+							GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
+							foreach(GameObject chara in charaMultiples){
+								chara.GetComponent<Animator>().Play(animToLaunch);
+							}
+
 							if(!GameObject.Find ("Charas").GetComponent<AudioSource>().isPlaying){
 								GameObject.Find ("Charas").GetComponent<AudioSource>().clip = soundArray[Random.Range (0, 25)];
 								GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
-								GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
-								foreach(GameObject chara in charaMultiples){
-									chara.GetComponent<Animator>().Play(animToLaunch);
-								}
+//								GameObject[] charaMultiples = GameObject.FindGameObjectsWithTag("Chara");
+//								foreach(GameObject chara in charaMultiples){
+//									chara.GetComponent<Animator>().Play(animToLaunch);
+//								}
 							}
 						}else{
 							serie = 0;
 							Combo();
 							tmpBad = 0f;
 							//functionDebug();
-							Destroy(hit.gameObject);
+
+							var ma = hit.gameObject.GetComponent<MovingAction>();
+							hit.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+							hit.gameObject.GetComponent<MovingAction>().fadeIn = false;
+							hit.gameObject.GetComponent<MovingAction>().currentTimeToFade = hit.gameObject.GetComponent<MovingAction>().fadingTime;
+
 							badParticle.Play();
 							GameObject.Find ("Charas").GetComponent<AudioSource>().clip = failArray[Random.Range (0, 2)];
 							GameObject.Find ("Charas").GetComponent<AudioSource>().Play ();
