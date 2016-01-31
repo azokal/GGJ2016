@@ -82,6 +82,11 @@ public class SpawnAction : MonoBehaviour {
 
 		if (DureeDeLaPartie <= 0) {
 			scoreBoard.SetActive(true);
+			var t = GameObject.Find("Validator").GetComponent<ValidatorScript>();
+			var scoreText = GameObject.Find("Score Text").GetComponent<UnityEngine.UI.Text>();
+			var comboText = GameObject.Find("Combo Text").GetComponent<UnityEngine.UI.Text>();
+			scoreText.text = t.score.ToString();
+			comboText.text = t.maxSerie.ToString();
 		}
 
 		timer -= Time.deltaTime;

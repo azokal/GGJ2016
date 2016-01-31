@@ -7,6 +7,7 @@ public class ValidatorScript : MonoBehaviour {
 	// Use this for initialization
 
 	public int combo = 1;
+	public int maxSerie = 0;
 	public int serie = 0;
 	public int score = 0;
 	public float animationTime = 0.5f;
@@ -58,38 +59,50 @@ public class ValidatorScript : MonoBehaviour {
 	}
 
 	string DoubleUpCheck() {
-		if (Input.GetKey(KeyCode.Alpha5))
+		if (Input.GetKey (KeyCode.Alpha5)) {
+			animToLaunch = "doubleTop";
 			return "DoubleUp";
+		}
 		return "";
 	}
 	
 	string DoubleDownCheck() {
-		if (Input.GetKey(KeyCode.Alpha6))
+		if (Input.GetKey (KeyCode.Alpha6)) {
+			animToLaunch = "doubleDown";
 			return "DoubleDown";
+		}
 		return "";
 	}
 
 	string InvertUpCheck() {
-		if (Input.GetKey(KeyCode.Alpha7))
+		if (Input.GetKey (KeyCode.Alpha7)) {
+			animToLaunch = "invertUp";
 			return "InvertUp";
+		}
 		return "";
 	}
 	
 	string InvertDownCheck() {
-		if (Input.GetKey(KeyCode.Alpha8))
+		if (Input.GetKey (KeyCode.Alpha8)) {
+			animToLaunch = "invertDown";
 			return "InvertDown";
+		}
 		return "";
 	}
 
 	string TurnLeftCheck() {
-		if (Input.GetKey(KeyCode.Alpha9))
+		if (Input.GetKey (KeyCode.Alpha9)) {
+			animToLaunch = "upDown";
 			return "TurnLeft";
+		}
 		return "";
 	}
 	
 	string TurnRightCheck() {
-		if (Input.GetKey(KeyCode.Alpha0))
+		if (Input.GetKey (KeyCode.Alpha0)) {
+			animToLaunch = "downUp";
 			return "TurnRight";
+		}
 		return "";
 	}
 	
@@ -244,6 +257,8 @@ public class ValidatorScript : MonoBehaviour {
 	}
 
 	public void Combo(){
+		if (serie > maxSerie)
+			maxSerie = serie;
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
 		if (serie < 15){
 			if(combo==2){
