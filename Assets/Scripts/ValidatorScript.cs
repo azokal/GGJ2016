@@ -217,23 +217,23 @@ public class ValidatorScript : MonoBehaviour {
 		var spawnAction = GameObject.Find ("Spawn Action").GetComponent<SpawnAction> ();
 		if (serie < 15){
 			if(combo==2){
-				minions2to1();
+//				minions2to1();
 			}
 			combo = 1;
 			spawnAction.difficulte = SpawnAction.enumDifficulte.facile;
 		}
 		if (serie >= 15 && combo < 40){
 			if(combo==1){
-				minions1to2();
+//				minions1to2();
 			}else if(combo==3){
-				minions3to2();
+//				minions3to2();
 			}
 			combo = 2;
 			spawnAction.difficulte = SpawnAction.enumDifficulte.moyen;
 		}
 		if (serie >= 40){
 			if(combo==2){
-				minions2to3();
+//				minions2to3();
 			}
 			combo = 4;
 			spawnAction.difficulte = SpawnAction.enumDifficulte.difficile;
